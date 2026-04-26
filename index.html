@@ -228,16 +228,12 @@
 
     /* Show finance by default; hide physics */
     .f-only { display: block; }
-    .f-flex { display: flex; }
-    
     .p-only { display: none; }
-    .p-flex { display: none; } /* Explicitly hide physics buttons on load */
-
-    /* 2. PHYSICS MODE (When toggle is active) */
     body.physics-mode .f-only { display: none; }
-    body.physics-mode .f-flex { display: none; }
-    
     body.physics-mode .p-only { display: block; }
+    .f-flex { display: flex; }
+    .p-flex { display: none; }
+    body.physics-mode .f-flex { display: none; }
     body.physics-mode .p-flex { display: flex; }
 
     .hero-links {
@@ -460,11 +456,11 @@
       Experimental physicist specialising in thin-film deposition, solid-state dewetting, and nanoscale materials characterisation. My M.Sc. thesis investigates Au–Ge nanoparticles for plasmonic enhancement and optoelectronic applications. I also write at <a href="https://matterthathinks.github.io" target="_blank">Matter That Thinks</a>.
     </p>
 
-    <div class="hero-links f-flex">
+    <div class="hero-links f-only">
       <a href="#experience" class="btn solid">My Background</a>
       <a href="#writing" class="btn">Writing →</a>
     </div>
-    <div class="hero-links p-flex">
+    <div class="hero-links p-only">
       <a href="#experience" class="btn solid">Research Work</a>
       <a href="#writing" class="btn">Blog →</a>
     </div>
