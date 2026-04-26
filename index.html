@@ -224,16 +224,13 @@
     .hero-desc a { color: var(--accent); text-decoration: none; transition: color 0.4s; }
 
     /* ── VISIBILITY LOGIC ── */
-/* 1. DEFAULT STATE (Finance Mode) */
     .f-only { display: block; }
-    .f-flex { display: flex; }
-    
     .p-only { display: none; }
-    .p-flex { display: none; } /* Explicitly hide physics buttons on load */
+    .f-flex { display: flex; }
+    .p-flex { display: none; }
 
-    /* 2. PHYSICS MODE (When toggle is active) */
-    body.physics-mode .f-only { display: none; }
-    body.physics-mode .f-flex { display: none; }
+    body.physics-mode .f-only,
+    body.physics-mode .f-flex { display: none !important; }
     
     body.physics-mode .p-only { display: block; }
     body.physics-mode .p-flex { display: flex; }
