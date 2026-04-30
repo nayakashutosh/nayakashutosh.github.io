@@ -19,6 +19,8 @@
       --card: #f0ece6;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'DM Sans', sans-serif;
+      --accent: #1c3557;
+      --accent-light: rgba(28,53,87,0.08);
     }
     [data-theme="dark"] {
       --bg: #131210;
@@ -26,22 +28,7 @@
       --muted: #8a857e;
       --rule: #2a2820;
       --card: #1c1a17;
-    }
-
-    /* Finance = navy, Physics = forest green */
-    body {
-      --accent: #1c3557;
-      --accent-light: rgba(28,53,87,0.08);
-    }
-    body.physics-mode {
-      --accent: #2d4a3e;
-      --accent-light: rgba(45,74,62,0.08);
-    }
-    [data-theme="dark"] body, [data-theme="dark"] {
       --accent-light: rgba(28,53,87,0.15);
-    }
-    [data-theme="dark"] body.physics-mode {
-      --accent-light: rgba(45,74,62,0.15);
     }
 
     html { scroll-behavior: smooth; }
@@ -62,56 +49,13 @@
       top: 0; left: 0; right: 0;
       z-index: 200;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       padding: 0.55rem 4rem;
       background: var(--bg);
       border-bottom: 1px solid var(--rule);
       transition: background 0.35s, border-color 0.35s;
     }
-
-    /* Mode toggle left side */
-    .mode-group {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-    .mode-label {
-      font-size: 0.66rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .toggle-track {
-      width: 48px; height: 24px;
-      background: var(--accent);
-      border-radius: 12px;
-      position: relative;
-      cursor: pointer;
-      transition: background 0.4s;
-      flex-shrink: 0;
-    }
-    .toggle-thumb {
-      width: 18px; height: 18px;
-      background: var(--bg);
-      border-radius: 50%;
-      position: absolute;
-      top: 3px;
-      left: 27px; /* finance default = pill on right = Finance active */
-      transition: left 0.3s, background 0.35s;
-    }
-    body.physics-mode .toggle-thumb { left: 3px; } /* pill left = Physics active */
-
-    .toggle-icon {
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      cursor: pointer;
-      transition: color 0.3s;
-      user-select: none;
-    }
-    .toggle-icon.active { color: var(--accent); font-weight: 500; }
 
     /* Dark mode — subtle icon button */
     .theme-btn {
@@ -216,7 +160,7 @@
     h1 em { font-style: italic; color: var(--accent); transition: color 0.4s; }
 
     .hero-desc {
-      max-width: 500px;
+      max-width: 540px;
       color: var(--muted);
       font-size: 0.91rem;
       line-height: 1.85;
@@ -225,16 +169,6 @@
       animation: fadeUp 0.8s 0.6s forwards;
     }
     .hero-desc a { color: var(--accent); text-decoration: none; transition: color 0.4s; }
-
-    /* Show finance by default; hide physics */
-    .f-only { display: block; }
-    .p-only { display: none; }
-    body.physics-mode .f-only { display: none; }
-    body.physics-mode .p-only { display: block; }
-    .f-flex { display: flex; }
-    .p-flex { display: none; }
-    body.physics-mode .f-flex { display: none; }
-    body.physics-mode .p-flex { display: flex; }
 
     .hero-links {
       display: flex; gap: 1rem; align-items: center;
@@ -292,6 +226,19 @@
     .exp-bullets li { font-size: 0.84rem; color: var(--muted); padding-left: 1rem; position: relative; }
     .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--rule); }
 
+    /* ── SECTION DIVIDER LABEL ── */
+    .exp-section-label {
+      font-size: 0.63rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.6rem;
+      margin-bottom: 0;
+      margin-top: 2.5rem;
+    }
+    .exp-section-label:first-child { margin-top: 0; }
+
     /* ── MSC THESIS ── */
     .thesis-block {
       background: var(--card);
@@ -322,6 +269,17 @@
     .skill-block-title { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; transition: color 0.4s; }
     .skill-block ul { list-style: none; display: flex; flex-direction: column; gap: 0.28rem; }
     .skill-block ul li { font-size: 0.83rem; color: var(--muted); }
+
+    /* ── SKILLS SECTION HEADING ── */
+    .skills-section-heading {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+      letter-spacing: -0.01em;
+    }
+    .skills-section-heading:first-of-type { margin-top: 0; }
 
     /* ── CERTS ── */
     .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
@@ -367,7 +325,7 @@
     .grades-toggle { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); cursor: pointer; margin-top: 0.6rem; display: inline-block; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
     .grades-toggle:hover { border-color: var(--accent); }
     .grades-body { display: none; }
-    .grades-body.open { display: table-row-group; }
+    .grades-body.open { display: block; }
 
     /* ── CONTACT ── */
     #contact { min-height: 40vh; display: flex; flex-direction: column; justify-content: center; }
@@ -414,17 +372,10 @@
     }
   </style>
 </head>
-<body><!-- Finance is default; no physics-mode class -->
+<body>
 
   <!-- UTIL BAR -->
   <div class="util-bar">
-    <div class="mode-group">
-      <span class="toggle-icon" id="label-physics">Physics</span>
-      <div class="toggle-track" id="modeToggle">
-        <div class="toggle-thumb"></div>
-      </div>
-      <span class="toggle-icon active" id="label-finance">Finance</span>
-    </div>
     <button class="theme-btn" id="darkToggle" title="Toggle dark mode">
       <svg id="themeIcon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
@@ -445,22 +396,16 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-bg-text" id="heroBgText">Finance</div>
-    <p class="hero-eyebrow" id="heroEyebrow">M.Sc. Physics · NISER · Graduating 2026</p>
+    <div class="hero-bg-text">Ashutosh</div>
+    <p class="hero-eyebrow">M.Sc. Physics · NISER · Graduating 2026</p>
     <h1>Ashutosh<br><em>Nayak</em></h1>
-
-    <p class="hero-desc f-only">
-      Physics postgraduate pivoting to finance and management. I bring quantitative rigour, systems thinking, and analytical clarity trained through years of experimental research, and now trying to apply whatever I've learnt to markets, business, and related ideas. I write at <a href="https://matterthathinks.github.io" target="_blank">Matter That Thinks</a>.
+    <p class="hero-desc">
+      Experimental physicist and finance self-learner, graduating from NISER Bhubaneswar in July 2026. My M.Sc. thesis investigates Au–Ge nanoparticles for plasmonic and optoelectronic applications. Alongside research, I've spent the last two years studying capital markets, completing 8 Zerodha certifications and the SEBI-NISM exam, and writing about economics, science, and ideas at <a href="https://matterthathinks.github.io" target="_blank">Matter That Thinks</a>.
     </p>
-    <p class="hero-desc p-only">
-      Experimental physicist specialising in thin-film deposition, solid-state dewetting, and nanoscale materials characterisation. My M.Sc. thesis investigates Au–Ge nanoparticles for plasmonic enhancement and optoelectronic applications. I also write at <a href="https://matterthathinks.github.io" target="_blank">Matter That Thinks</a>.
-    </p>
-
-<div class="hero-links">
-  <a href="#experience" class="btn solid">My Background</a>
-  <a href="#writing" class="btn">Writing →</a>
-</div>
-    
+    <div class="hero-links">
+      <a href="#experience" class="btn solid">My Background</a>
+      <a href="#writing" class="btn">Writing →</a>
+    </div>
   </section>
 
   <!-- ═══ ABOUT ═══ -->
@@ -470,71 +415,46 @@
       <h2>About</h2>
     </div>
 
-    <!-- FINANCE ABOUT -->
-    <div class="about-grid f-only">
+    <div class="about-grid">
       <div class="about-text">
-        <p>I am a final-year <strong>Integrated M.Sc. Physics student</strong> at NISER Bhubaneswar, an autonomous institute under India's Department of Atomic Energy, graduating in July 2026.</p>
-        <p>Five years of research training have given me something most finance candidates lack: <strong>genuine quantitative rigour</strong>. My work involved a lot of problem solving, interpreting noisy data, optimise things under hard constraints.</p>
-        <p>I discovered finance during my undergraduate years through Zerodha Varsity and have since completed <strong>8 Zerodha certifications</strong>, the SEBI-NISM Investor Certification, and a Foundation in Entrepreneurship (HBNI–IIMA Ventures). I do try to track markets, read filings, and write about economics and finance at my blog.</p>
-        <p>I am looking for positions where I can learn and grow, it can be as diverse as it can, and where I can learn problem solving and stuff. Parally I am also preparing for <strong>CAT 2026</strong> for a possible and delibrate next step toward a career in finance, strategy, or consulting.</p>
+        <p>I am a final-year <strong>Integrated M.Sc. Physics student</strong> at NISER Bhubaneswar, an autonomous institute under India's Department of Atomic Energy, graduating in July 2026. My thesis — supervised by Dr. Pratap Kumar Sahoo — investigates Au–Ge nanoparticle formation via solid-state dewetting of bilayer thin films, and their plasmonic and optoelectronic properties.</p>
+        <p>Five years of experimental research have trained me in a specific kind of thinking: <strong>working with ambiguous data, optimising under hard constraints, and building rigorous explanations from first principles</strong>. I've worked with FESEM, Raman spectroscopy, UV–Vis–NIR, photoluminescence, cathodoluminescence, EDX, and I–V probe stations. I interned at IIT Kanpur on plasma diagnostics and have done projects across multiple NISER labs.</p>
+        <p>In parallel, I discovered finance during my undergraduate years and took it seriously. I've completed <strong>8 Zerodha Varsity certifications</strong> (including Fundamental Analysis, Options Strategies, Risk Management, Futures Trading, and Government Securities), passed the <strong>SEBI-NISM Investor Certification</strong> (44/50), and completed a Foundation in Entrepreneurship through <strong>HBNI–IIMA Ventures</strong>, where I developed and pitched a deep-tech startup concept. I track markets, read filings, and think about how quantitative rigour transfers across domains.</p>
+        <p>I am preparing for <strong>CAT 2026</strong> as a deliberate next step toward finance, strategy, or consulting. Open to internships, research roles, analyst positions, and writing opportunities. Graduating July 2026, open to relocation.</p>
       </div>
       <div>
         <div class="skills-list">
+          <div class="skill-item">
+            <span class="skill-label">Research & Lab</span>
+            <div class="skill-tags">
+              <span class="tag">Thin-Film Growth</span><span class="tag">Solid-State Dewetting</span>
+              <span class="tag">FESEM / EDX</span><span class="tag">Raman</span>
+              <span class="tag">UV–Vis–NIR</span><span class="tag">PL / CL</span>
+              <span class="tag">SRIM/TRIM</span><span class="tag">PVD / EBPVD</span>
+            </div>
+          </div>
           <div class="skill-item">
             <span class="skill-label">Finance & Markets</span>
             <div class="skill-tags">
               <span class="tag">Equity Markets</span><span class="tag">Derivatives</span>
               <span class="tag">Risk Management</span><span class="tag">Fixed Income</span>
-              <span class="tag">Fundamental Analysis</span>
+              <span class="tag">Fundamental Analysis</span><span class="tag">Options Strategies</span>
             </div>
           </div>
           <div class="skill-item">
-            <span class="skill-label">Quantitative</span>
+            <span class="skill-label">Quantitative & Tools</span>
             <div class="skill-tags">
-              <span class="tag">Origin</span><span class="tag">Data Analysis</span>
-              <span class="tag">Scenario Analysis</span><span class="tag">Python</span>
+              <span class="tag">Python</span><span class="tag">Origin</span>
+              <span class="tag">ImageJ</span><span class="tag">AutoCAD</span>
+              <span class="tag">LabVIEW</span><span class="tag">MatRad</span>
+              <span class="tag">Data Analysis</span><span class="tag">LaTeX</span>
             </div>
           </div>
           <div class="skill-item">
             <span class="skill-label">Communication</span>
             <div class="skill-tags">
-              <span class="tag">Essay Writing</span><span class="tag">Technical Reports</span>
-              <span class="tag">Public Speaking</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PHYSICS ABOUT -->
-    <div class="about-grid p-only">
-      <div class="about-text">
-        <p>I am a final-year <strong>Integrated M.Sc. Physics student</strong> at NISER Bhubaneswar (Dept. of Atomic Energy), completing my thesis on Au–Ge nanoparticles synthesised via solid-state dewetting of bilayer thin films.</p>
-        <p>My research spans <strong>thin-film growth, ion-beam processing</strong>, and optical/structural characterisation — SEM, Raman, UV–Vis–NIR, PL, EDX, and cathodoluminescence. I care about process-property correlations and building a rigorous understanding of nanoscale behaviour.</p>
-        <p>I have interned at <strong>IIT Kanpur</strong> (plasma diagnostics) and across multiple labs at NISER, and I write about physics, science policy, and ideas at <a href="https://matterthathinks.github.io" target="_blank">Matter That Thinks</a>.</p>
-      </div>
-      <div>
-        <div class="skills-list">
-          <div class="skill-item">
-            <span class="skill-label">Technical Focus</span>
-            <div class="skill-tags">
-              <span class="tag">Thin-Film Growth</span><span class="tag">Solid-State Dewetting</span>
-              <span class="tag">SEM / FESEM</span><span class="tag">Raman</span>
-              <span class="tag">UV–Vis–NIR</span><span class="tag">SRIM/TRIM</span>
-            </div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-label">Fabrication</span>
-            <div class="skill-tags">
-              <span class="tag">PVD (Thermal Evap.)</span><span class="tag">EBPVD</span>
-              <span class="tag">Thermal Annealing</span><span class="tag">MEFIB Ion Beam</span>
-            </div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-label">Tools</span>
-            <div class="skill-tags">
-              <span class="tag">Python</span><span class="tag">Origin</span>
-              <span class="tag">ImageJ</span><span class="tag">MatRad</span><span class="tag">AutoCAD</span>
+              <span class="tag">Science Writing</span><span class="tag">Financial Writing</span>
+              <span class="tag">Public Speaking</span><span class="tag">Content Strategy</span>
             </div>
           </div>
         </div>
@@ -546,180 +466,161 @@
   <section id="experience">
     <div class="section-header">
       <span class="section-num">02</span>
-      <h2 id="expTitle">Experience</h2>
+      <h2>Experience</h2>
     </div>
 
-    <!-- ── FINANCE EXP ── -->
-    <div class="f-only">
-
-      <!-- MSc framed as analytical work -->
-      <div class="exp-list">
-
-        <div class="exp-item">
-          <span class="exp-date">2024 – Present</span>
-          <div>
-            <p class="exp-org">Self-Directed · Markets & Finance</p>
-            <p class="exp-role">Independent Financial Learning & Analysis</p>
-            <ul class="exp-bullets">
-              <li>Completed 8 Zerodha Varsity certifications — including Fundamental Analysis, Options Strategies, Risk Management, Futures Trading, and Government Securities.</li>
-              <li>Passed SEBI-NISM Investor Certification Examination (44/50) in December 2024.</li>
-              <li>Actively tracks equity markets, studies company filings, and maintains a self-curated investment journal.</li>
-              <li>Reads financial newsletters (Finshots, Zerodha) daily; won Finshots weekly quiz competition.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <span class="exp-date">Aug – Nov 2025</span>
-          <div>
-            <p class="exp-org">HBNI – IIMA Ventures</p>
-            <p class="exp-role">Foundation of Entrepreneurship (Credit Course)</p>
-            <ul class="exp-bullets">
-              <li>Completed a credited course on entrepreneurship organised jointly by Homi Bhabha National Institute and IIMA Ventures — scored 74/100.</li>
-              <li>Developed and pitched <em>ModNuke Energy</em>: a concept for small modular reactors (SMRs) supplying scalable clean power to data centres and AI infrastructure, addressing India's rapidly growing energy demand.</li>
-              <li>Studied venture structuring, market sizing, and business model design for deep-tech startups.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <span class="exp-date">2022 – 2024</span>
-          <div>
-            <p class="exp-org">Vaktavya · NISER</p>
-            <p class="exp-role">Head of Social Media & Outreach</p>
-            <ul class="exp-bullets">
-              <li>Led a team creating 30+ explainer posts on science, economics, and research for a student audience.</li>
-              <li>Managed multi-channel outreach strategy; developed content strategy and stakeholder communication skills.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <span class="exp-date">May – Jul 2022</span>
-          <div>
-            <p class="exp-org">Center for Medical & Radiation Physics · NISER</p>
-            <p class="exp-role">Quantitative Modelling & Optimisation</p>
-            <ul class="exp-bullets">
-              <li>Modelled radiation therapy plans (Photon, Proton, Carbon Ion) using MatRad — applying constraint-driven optimisation structurally identical to portfolio risk management.</li>
-              <li>Evaluated trade-offs between competing objectives under hard safety limits; documented reasoning systematically across 6 patient datasets.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <span class="exp-date">Dec 2025 – Jan 2026</span>
-          <div>
-            <p class="exp-org">Ion Beam & Nanomaterials Lab · NISER</p>
-            <p class="exp-role">Parameter-Sensitivity Analysis (Research)</p>
-            <ul class="exp-bullets">
-              <li>Ran systematic parameter studies on nanofabrication processes — analogous to scenario analysis and stress-testing in financial modelling.</li>
-              <li>Used statistical tools to identify stable process windows under uncertainty, building intuition for risk and variability management.</li>
-            </ul>
-          </div>
-        </div>
-
+    <!-- MSc Thesis Block -->
+    <div class="thesis-block">
+      <p class="thesis-tag">M.Sc. Dissertation · 2024–2026 · Dr. Pratap Kumar Sahoo, NISER</p>
+      <p class="thesis-title">Engineering Au–Ge Nanoparticles for Plasmonic Enhancement & Optoelectronic Applications</p>
+      <p class="thesis-meta">School of Physical Sciences · NISER Bhubaneswar</p>
+      <p class="thesis-abstract">
+        Investigated the formation and optoelectronic properties of Au–Ge nanoparticles synthesised via solid-state dewetting of Ge/Au bilayer thin films. Bilayers of 50 nm Ge with 10 nm and 20 nm Au were deposited on Si/SiO₂ and glass substrates and annealed between 400°C and 800°C. Observed a temperature-driven transition from continuous films to discrete near-spherical nanoparticles governed by surface diffusion and capillarity. EDX analysis revealed size-dependent phase behaviour — smaller particles forming alloys, larger particles forming phase-separated Janus-type structures. Optical measurements identified UV absorption from Ge interband transitions (E₂ critical point ~320 nm), visible LSPR of Au nanoparticles (~498–520 nm), and broad NIR absorption from free-carrier and hybrid alloy states. Raman confirmed crystalline Ge; PL was suppressed due to indirect bandgap and metallic quenching.
+      </p>
+      <div class="thesis-highlights">
+        <div class="thesis-hi"><strong>Characterisation</strong>FESEM, EDX, UV–Vis–NIR, Raman, PL, CL, Contact Angle</div>
+        <div class="thesis-hi"><strong>Fabrication</strong>Thermal PVD (Mantis), Tube Furnace Annealing (400–800°C), Ar atmosphere</div>
+        <div class="thesis-hi"><strong>Key Result</strong>Janus vs. alloy morphology controlled by particle size; NIR absorption enhanced by eutectic-driven alloying</div>
+        <div class="thesis-hi"><strong>Supervisor</strong>Dr. Pratap Kumar Sahoo · Professor, SPS, NISER</div>
       </div>
     </div>
 
-    <!-- ── PHYSICS EXP ── -->
-    <div class="p-only">
+    <div class="exp-list" style="margin-top:2rem">
 
-      <!-- MSc Thesis Block -->
-      <div class="thesis-block">
-        <p class="thesis-tag">M.Sc. Dissertation · 2024–2026 · Dr. Pratap Kumar Sahoo, NISER</p>
-        <p class="thesis-title">Engineering Au–Ge Nanoparticles for Plasmonic Enhancement & Optoelectronic Applications</p>
-        <p class="thesis-meta">School of Physical Sciences · NISER Bhubaneswar</p>
-        <p class="thesis-abstract">
-          Investigated the formation and optoelectronic properties of Au–Ge nanoparticles synthesised via solid-state dewetting of Ge/Au bilayer thin films. Bilayers of 50 nm Ge with 10 nm and 20 nm Au were deposited on Si/SiO₂ and glass substrates and annealed between 400°C and 800°C. Observed a temperature-driven transition from continuous films to discrete near-spherical nanoparticles governed by surface diffusion and capillarity. EDX analysis revealed size-dependent phase behaviour — smaller particles forming alloys, larger particles forming phase-separated Janus-type structures. Optical measurements identified UV absorption from Ge interband transitions (E₂ critical point ~320 nm), visible LSPR of Au nanoparticles (~498–520 nm), and broad NIR absorption from free-carrier and hybrid alloy states. Raman confirmed crystalline Ge; PL was suppressed due to indirect bandgap and metallic quenching.
-        </p>
-        <div class="thesis-highlights">
-          <div class="thesis-hi"><strong>Characterisation</strong>FESEM, EDX, UV–Vis–NIR, Raman, PL, CL, Contact Angle</div>
-          <div class="thesis-hi"><strong>Fabrication</strong>Thermal PVD (Mantis), Tube Furnace Annealing (400–800°C), Ar atmosphere</div>
-          <div class="thesis-hi"><strong>Key Result</strong>Janus vs. alloy morphology controlled by particle size; NIR absorption enhanced by eutectic-driven alloying</div>
-          <div class="thesis-hi"><strong>Supervisor</strong>Dr. Pratap Kumar Sahoo · Professor, SPS, NISER</div>
+      <p class="exp-section-label">Research & Lab Work</p>
+
+      <div class="exp-item">
+        <span class="exp-date">Dec 2025 – Jan 2026</span>
+        <div>
+          <p class="exp-org">Ion Beam & Nanomaterials Lab · NISER</p>
+          <p class="exp-role">Winter Project — Raman & UV–Vis Characterisation</p>
+          <ul class="exp-bullets">
+            <li>Performed Raman spectroscopy (532 nm, 633 nm) and UV–Vis–NIR spectroscopy on Au–Ge nanoparticles across annealing temperatures (400–800°C).</li>
+            <li>Identified sharp Ge–Ge optical phonon mode at ~300 cm⁻¹ confirming crystalline Ge; absence of amorphous Ge or GeOx signatures.</li>
+            <li>Attributed UV absorption at ~320 nm to E₂ critical-point interband transitions of Ge, with contributions from plasmon–semiconductor coupling.</li>
+            <li>Correlated spectral evolution with morphological changes observed in FESEM; documented structure–property relationships.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="exp-list" style="margin-top:2rem">
-
-        <div class="exp-item">
-          <span class="exp-date">Dec 2025 – Jan 2026</span>
-          <div>
-            <p class="exp-org">Ion Beam & Nanomaterials Lab · NISER</p>
-            <p class="exp-role">Winter Project — Raman & UV–Vis Characterisation</p>
-            <ul class="exp-bullets">
-              <li>Performed Raman spectroscopy (532 nm, 633 nm) and UV–Vis–NIR spectroscopy on Au–Ge nanoparticles across annealing temperatures (400–800°C).</li>
-              <li>Identified sharp Ge–Ge optical phonon mode at ~300 cm⁻¹ confirming crystalline Ge; absence of amorphous Ge or GeOx signatures.</li>
-              <li>Attributed UV absorption at ~320 nm to E₂ critical-point interband transitions of Ge, with contributions from plasmon–semiconductor coupling.</li>
-              <li>Correlated spectral evolution with morphological changes observed in FESEM; documented structure–property relationships.</li>
-            </ul>
-          </div>
+      <div class="exp-item">
+        <span class="exp-date">May – Jul 2025</span>
+        <div>
+          <p class="exp-org">Ion Beam & Nanomaterials Lab · NISER</p>
+          <p class="exp-role">Summer Project — SRIM/TRIM Ion Beam Simulations</p>
+          <ul class="exp-bullets">
+            <li>Performed SRIM/TRIM Monte Carlo simulations on Au–Ge–SiO₂–Si heterostructures for 100 keV and 200 keV Ar ion beams.</li>
+            <li>Compared normal (discrete-layer) vs. graded-density structures: normal structures permit deeper penetration with sharper doping peaks; graded structures yield broader, smoother profiles reducing localised damage.</li>
+            <li>Analysed doping density profiles, sputtering yields, and nuclear energy deposition to guide experimental ion-beam processing parameters.</li>
+          </ul>
         </div>
-
-        <div class="exp-item">
-          <span class="exp-date">May – Jul 2025</span>
-          <div>
-            <p class="exp-org">Ion Beam & Nanomaterials Lab · NISER</p>
-            <p class="exp-role">Summer Project — SRIM/TRIM Ion Beam Simulations</p>
-            <ul class="exp-bullets">
-              <li>Performed SRIM/TRIM Monte Carlo simulations on Au–Ge–SiO₂–Si heterostructures for 100 keV and 200 keV Ar ion beams.</li>
-              <li>Compared normal (discrete-layer) vs. graded-density structures: normal structures permit deeper penetration with sharper doping peaks; graded structures yield broader, smoother profiles reducing localised damage.</li>
-              <li>Analysed doping density profiles, sputtering yields, and nuclear energy deposition to guide experimental ion-beam processing parameters.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <span class="exp-date">Jun – Jul 2024</span>
-          <div>
-            <p class="exp-org">Nanoelectronics & Device Physics Lab · NISER</p>
-            <p class="exp-role">Summer Project — Device Characterisation & PV Review</p>
-            <ul class="exp-bullets">
-              <li>Performed I–V characterisation using a CRX-6.5K probe station (cryogenic, down to ~6.5 K) to evaluate solar cell performance metrics.</li>
-              <li>Studied photon recycling and recombination pathways in perovskite photovoltaics to identify performance-limiting defects.</li>
-              <li>Reviewed state-of-art PV technologies: Shockley–Queisser limit, perovskite stability, and quantum dot solar cells.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <span class="exp-date">May – Jul 2023</span>
-          <div>
-            <p class="exp-org">Waves & Beams Laboratory · IIT Kanpur</p>
-            <p class="exp-role">Summer Intern — Plasma Diagnostics</p>
-            <ul class="exp-bullets">
-              <li>Designed, fabricated, and calibrated a custom electric field probe (70 μm tungsten tip, Delrin/SS body) from 3D AutoCAD model.</li>
-              <li>Measured electric field distribution through a 500 μm PLE micro-aperture in a MEFIB system at varying pressures (0.4–0.8 mTorr) and powers (150–350 W).</li>
-              <li>Operated vacuum systems, turbo molecular pumps, ECR plasma source, and LabVIEW data acquisition.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <span class="exp-date">May – Jul 2022</span>
-          <div>
-            <p class="exp-org">Center for Medical & Radiation Physics · NISER</p>
-            <p class="exp-role">Summer Project — Radiation Therapy Modelling</p>
-            <ul class="exp-bullets">
-              <li>Modelled Photon, Proton, and Carbon Ion therapy plans using MatRad for 6 lung cancer patient datasets.</li>
-              <li>Evaluated dose distribution trade-offs between PTV coverage and organs-at-risk (spinal cord, heart) under prescribed constraints.</li>
-              <li>Concluded Proton and Carbon Ion therapy consistently outperform Photon therapy in OAR sparing.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <span class="exp-date">2022 – 2024</span>
-          <div>
-            <p class="exp-org">Vaktavya · NISER</p>
-            <p class="exp-role">Head of Social Media & Outreach</p>
-            <ul class="exp-bullets">
-              <li>Led science communication initiatives; coordinated cross-functional teams and managed outreach programs.</li>
-            </ul>
-          </div>
-        </div>
-
       </div>
+
+      <div class="exp-item">
+        <span class="exp-date">Jun – Jul 2024</span>
+        <div>
+          <p class="exp-org">Nanoelectronics & Device Physics Lab · NISER</p>
+          <p class="exp-role">Summer Project — Device Characterisation & PV Review</p>
+          <ul class="exp-bullets">
+            <li>Performed I–V characterisation using a CRX-6.5K probe station (cryogenic, down to ~6.5 K) to evaluate solar cell performance metrics.</li>
+            <li>Studied photon recycling and recombination pathways in perovskite photovoltaics to identify performance-limiting defects.</li>
+            <li>Reviewed state-of-art PV technologies: Shockley–Queisser limit, perovskite stability, and quantum dot solar cells.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <span class="exp-date">May – Jul 2023</span>
+        <div>
+          <p class="exp-org">Waves & Beams Laboratory · IIT Kanpur</p>
+          <p class="exp-role">Summer Intern — Plasma Diagnostics</p>
+          <ul class="exp-bullets">
+            <li>Designed, fabricated, and calibrated a custom electric field probe (70 μm tungsten tip, Delrin/SS body) from 3D AutoCAD model.</li>
+            <li>Measured electric field distribution through a 500 μm PLE micro-aperture in a MEFIB system at varying pressures (0.4–0.8 mTorr) and powers (150–350 W).</li>
+            <li>Operated vacuum systems, turbo molecular pumps, ECR plasma source, and LabVIEW data acquisition.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <span class="exp-date">May – Jul 2022</span>
+        <div>
+          <p class="exp-org">Center for Medical & Radiation Physics · NISER</p>
+          <p class="exp-role">Summer Project — Radiation Therapy Modelling</p>
+          <ul class="exp-bullets">
+            <li>Modelled Photon, Proton, and Carbon Ion therapy plans using MatRad for 6 lung cancer patient datasets.</li>
+            <li>Evaluated dose distribution trade-offs between PTV coverage and organs-at-risk (spinal cord, heart) under prescribed constraints — structurally identical to constraint-driven optimisation in financial risk management.</li>
+            <li>Concluded Proton and Carbon Ion therapy consistently outperform Photon therapy in OAR sparing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="exp-section-label" style="margin-top:1rem">Finance & Entrepreneurship</p>
+
+      <div class="exp-item">
+        <span class="exp-date">2024 – Present</span>
+        <div>
+          <p class="exp-org">Self-Directed · Markets & Finance</p>
+          <p class="exp-role">Independent Financial Learning & Analysis</p>
+          <ul class="exp-bullets">
+            <li>Completed 8 Zerodha Varsity certifications — including Fundamental Analysis, Options Strategies, Risk Management, Futures Trading, and Government Securities.</li>
+            <li>Passed SEBI-NISM Investor Certification Examination (44/50) in December 2024.</li>
+            <li>Actively tracks equity markets, studies company filings, and maintains a self-curated investment journal.</li>
+            <li>Reads financial newsletters (Finshots, Zerodha) daily; won Finshots weekly quiz competition.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <span class="exp-date">Aug – Nov 2025</span>
+        <div>
+          <p class="exp-org">HBNI – IIMA Ventures</p>
+          <p class="exp-role">Foundation of Entrepreneurship (Credit Course)</p>
+          <ul class="exp-bullets">
+            <li>Completed a credited course on entrepreneurship organised jointly by Homi Bhabha National Institute and IIMA Ventures — scored 74/100.</li>
+            <li>Developed and pitched <em>ModNuke Energy</em>: a concept for small modular reactors (SMRs) supplying scalable clean power to data centres and AI infrastructure, addressing India's rapidly growing energy demand.</li>
+            <li>Studied venture structuring, market sizing, and business model design for deep-tech startups.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="exp-section-label" style="margin-top:1rem">Leadership & Outreach</p>
+
+      <div class="exp-item">
+        <span class="exp-date">2022 – 2024</span>
+        <div>
+          <p class="exp-org">Vaktavya · NISER</p>
+          <p class="exp-role">Head of Social Media & Outreach</p>
+          <ul class="exp-bullets">
+            <li>Led a team creating 30+ explainer posts on science, economics, and research for a student audience.</li>
+            <li>Managed multi-channel outreach strategy; developed content and stakeholder communication skills.</li>
+            <li>Led science communication initiatives; coordinated cross-functional teams and managed outreach programs for 2 years.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <span class="exp-date">Feb 2025</span>
+        <div>
+          <p class="exp-org">MRSI-ICEM 2025 · NISER</p>
+          <p class="exp-role">Volunteer Organiser</p>
+          <ul class="exp-bullets">
+            <li>Organised logistics and coordination for the Materials Research Society of India conference (~600 participants).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item" style="border-bottom:none">
+        <span class="exp-date">2025</span>
+        <div>
+          <p class="exp-org">Ion Beam for Material Innovation · NISER</p>
+          <p class="exp-role">Organiser</p>
+          <ul class="exp-bullets">
+            <li>Co-organised a focused workshop on ion beam techniques and their applications in materials science.</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -730,193 +631,175 @@
       <h2>Skills & Certifications</h2>
     </div>
 
-    <!-- FINANCE SKILLS -->
-    <div class="f-only">
-      <div class="skills-grid" style="margin-bottom:2.5rem">
-        <div class="skill-block">
-          <p class="skill-block-title">Finance & Markets</p>
-          <ul>
-            <li>Equity Markets & Derivatives</li>
-            <li>Options Strategies</li>
-            <li>Futures & Risk Management</li>
-            <li>Fundamental Analysis</li>
-            <li>Fixed Income (G-Secs)</li>
-            <li>Commodities & Currencies</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">Quantitative & Analytical</p>
-          <ul>
-            <li>Statistical Data Analysis</li>
-            <li>Parameter Sensitivity & Scenarios</li>
-            <li>Optimisation Under Constraints</li>
-            <li>Numerical Modelling</li>
-            <li>Python (data analysis)</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">Communication & Strategy</p>
-          <ul>
-            <li>Essay & Financial Writing</li>
-            <li>Science Communication</li>
-            <li>Public Speaking</li>
-            <li>Content Strategy</li>
-            <li>Technical Documentation (LaTeX)</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">Entrepreneurship</p>
-          <ul>
-            <li>Venture Concept Development</li>
-            <li>Market Sizing & Business Models</li>
-            <li>Deep-Tech Startup Thinking</li>
-            <li>HBNI–IIMA Ventures (2025, 74/100)</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">CAT 2026 Prep</p>
-          <ul>
-            <li>Quantitative Aptitude</li>
-            <li>Verbal & Logical Reasoning</li>
-            <li>Data Interpretation</li>
-            <li>Case Study Reading</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">Languages & Interests</p>
-          <ul>
-            <li>English, Hindi, Odia (fluent)</li>
-            <li>Sambalpuri, Agharia (native)</li>
-            <li>Capital Markets · Strategy</li>
-            <li>Badminton · Sci-Fi Cinema</li>
-          </ul>
-        </div>
+    <h3 class="skills-section-heading">Physics & Research</h3>
+    <div class="skills-grid" style="margin-bottom:2.5rem">
+      <div class="skill-block">
+        <p class="skill-block-title">Characterisation</p>
+        <ul>
+          <li>FESEM (ZEISS Sigma 3.0)</li>
+          <li>Raman Spectroscopy (Horiba)</li>
+          <li>UV–Vis–NIR (Agilent Cary 5000)</li>
+          <li>Photoluminescence (He–Cd laser)</li>
+          <li>Cathodoluminescence (Monarc CL)</li>
+          <li>EDX (EDAX Octane Elite)</li>
+          <li>I–V (CRX-6.5K probe station)</li>
+        </ul>
       </div>
-
-      <!-- Certifications -->
-      <h3 style="font-family:var(--serif);font-weight:300;font-size:1.4rem;margin-bottom:1.5rem;letter-spacing:-0.01em">Certifications</h3>
-      <div class="cert-grid">
-        <div class="cert-card">
-          <span class="cert-issuer">SEBI · NISM</span>
-          <span class="cert-name">Investor Certification Examination</span>
-          <span class="cert-score">Score: 44 / 50 · Dec 2024 · Valid till Dec 2026</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">Zerodha Varsity</span>
-          <span class="cert-name">Currency, Commodity & Govt. Securities</span>
-          <span class="cert-score">Score: 200 / 250 · Sep 2024</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">Zerodha Varsity</span>
-          <span class="cert-name">Risk Management & Trading Psychology</span>
-          <span class="cert-score">Score: 200 / 250 · Oct 2024</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">Zerodha Varsity</span>
-          <span class="cert-name">Options Strategies</span>
-          <span class="cert-score">Score: 130 / 150 · Aug 2024</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">Zerodha Varsity</span>
-          <span class="cert-name">Options Trading</span>
-          <span class="cert-score">Score: 230 / 250 · June 2024</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">Zerodha Varsity</span>
-          <span class="cert-name">Futures Trading</span>
-          <span class="cert-score">Score: 178.5 / 250 · Mar 2024</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">Zerodha Varsity</span>
-          <span class="cert-name">Technical Analysis</span>
-          <span class="cert-score">Score: 220 / 250 · Mar 2024</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">Zerodha Varsity</span>
-          <span class="cert-name">Fundamental Analysis</span>
-          <span class="cert-score">Score: 140 / 150 · Jul 2024</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">Zerodha Varsity</span>
-          <span class="cert-name">Stock Market Basics</span>
-          <span class="cert-score">Score: 210 / 250 · Feb 2024</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">HBNI – IIMA Ventures</span>
-          <span class="cert-name">Foundation of Entrepreneurship (ModNuke Energy)</span>
-          <span class="cert-score">Score: 74 / 100 · Nov 2025 · 2 Credits</span>
-        </div>
-        <div class="cert-card">
-          <span class="cert-issuer">Princeton Plasma Physics Laboratory</span>
-          <span class="cert-name">Introduction to Fusion Energy & Plasma Physics</span>
-          <span class="cert-score">2023</span>
-        </div>
+      <div class="skill-block">
+        <p class="skill-block-title">Fabrication</p>
+        <ul>
+          <li>Thermal PVD (Mantis UK)</li>
+          <li>Electron Beam PVD</li>
+          <li>Thermal Annealing (tube furnace)</li>
+          <li>Ion Beam Methods (MEFIB)</li>
+          <li>Solid-State Dewetting</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <p class="skill-block-title">Simulation & Data</p>
+        <ul>
+          <li>SRIM / TRIM (Monte Carlo)</li>
+          <li>MatRad (radiation therapy)</li>
+          <li>Python · Origin · ImageJ</li>
+          <li>AutoCAD · LabVIEW</li>
+          <li>Gaussian peak fitting</li>
+          <li>Kubelka–Munk analysis</li>
+        </ul>
       </div>
     </div>
 
-    <!-- PHYSICS SKILLS -->
-    <div class="p-only">
-      <div class="skills-grid" style="margin-bottom:2.5rem">
-        <div class="skill-block">
-          <p class="skill-block-title">Characterisation</p>
-          <ul>
-            <li>FESEM (ZEISS Sigma 3.0)</li>
-            <li>Raman Spectroscopy (Horiba)</li>
-            <li>UV–Vis–NIR (Agilent Cary 5000)</li>
-            <li>Photoluminescence (He–Cd laser)</li>
-            <li>Cathodoluminescence (Monarc CL)</li>
-            <li>EDX (EDAX Octane Elite)</li>
-            <li>I–V (CRX-6.5K probe station)</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">Fabrication</p>
-          <ul>
-            <li>Thermal PVD (Mantis UK)</li>
-            <li>Electron Beam PVD</li>
-            <li>Thermal Annealing (tube furnace)</li>
-            <li>Ion Beam Methods (MEFIB)</li>
-            <li>Solid-State Dewetting</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">Simulation & Data</p>
-          <ul>
-            <li>SRIM / TRIM (Monte Carlo)</li>
-            <li>MatRad (radiation therapy)</li>
-            <li>Python · Origin · ImageJ</li>
-            <li>AutoCAD · LabVIEW</li>
-            <li>Gaussian peak fitting</li>
-            <li>Kubelka–Munk analysis</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">Awards & Recognition</p>
-          <ul>
-            <li>DISHA Scholar — Dept. of Atomic Energy</li>
-            <li>Outstanding Performance — Anveshika Skill Test, IIT Kanpur</li>
-            <li>NPTEL Cell Biology — Completed</li>
-            <li>Patent Filing Workshop — IICE, IISER Bhopal</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">Leadership</p>
-          <ul>
-            <li>Head, Social Media — Vaktavya NISER (2022–24)</li>
-            <li>Volunteer Organiser — MRSI-ICEM 2025 (~600 participants)</li>
-            <li>Organiser — Ion Beam for Material Innovation, NISER 2025</li>
-          </ul>
-        </div>
-        <div class="skill-block">
-          <p class="skill-block-title">Interests</p>
-          <ul>
-            <li>Semiconductor Technology</li>
-            <li>Advanced Metrology</li>
-            <li>Science Writing & Communication</li>
-            <li>Finance & Markets</li>
-            <li>Badminton · Harmonium</li>
-          </ul>
-        </div>
+    <h3 class="skills-section-heading">Finance & Business</h3>
+    <div class="skills-grid" style="margin-bottom:2.5rem">
+      <div class="skill-block">
+        <p class="skill-block-title">Finance & Markets</p>
+        <ul>
+          <li>Equity Markets & Derivatives</li>
+          <li>Options Strategies</li>
+          <li>Futures & Risk Management</li>
+          <li>Fundamental Analysis</li>
+          <li>Fixed Income (G-Secs)</li>
+          <li>Commodities & Currencies</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <p class="skill-block-title">Quantitative & Analytical</p>
+        <ul>
+          <li>Statistical Data Analysis</li>
+          <li>Parameter Sensitivity & Scenarios</li>
+          <li>Optimisation Under Constraints</li>
+          <li>Numerical Modelling</li>
+          <li>Python (data analysis)</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <p class="skill-block-title">Communication & Strategy</p>
+        <ul>
+          <li>Essay & Financial Writing</li>
+          <li>Science Communication</li>
+          <li>Public Speaking</li>
+          <li>Content Strategy</li>
+          <li>Technical Documentation (LaTeX)</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <p class="skill-block-title">Entrepreneurship</p>
+        <ul>
+          <li>Venture Concept Development</li>
+          <li>Market Sizing & Business Models</li>
+          <li>Deep-Tech Startup Thinking</li>
+          <li>HBNI–IIMA Ventures (2025, 74/100)</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <p class="skill-block-title">CAT 2026 Prep</p>
+        <ul>
+          <li>Quantitative Aptitude</li>
+          <li>Verbal & Logical Reasoning</li>
+          <li>Data Interpretation</li>
+          <li>Case Study Reading</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <p class="skill-block-title">Languages & Interests</p>
+        <ul>
+          <li>English, Hindi, Odia (fluent)</li>
+          <li>Sambalpuri, Agharia (native)</li>
+          <li>Capital Markets · Strategy</li>
+          <li>Semiconductor Technology</li>
+          <li>Badminton · Sci-Fi Cinema · Harmonium</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="skills-section-heading">Awards & Recognition</h3>
+    <div class="skills-grid" style="margin-bottom:2.5rem">
+      <div class="skill-block">
+        <p class="skill-block-title">Honours</p>
+        <ul>
+          <li>DISHA Scholar — Dept. of Atomic Energy</li>
+          <li>Outstanding Performance — Anveshika Skill Test, IIT Kanpur</li>
+          <li>NPTEL Cell Biology — Completed</li>
+          <li>Patent Filing Workshop — IICE, IISER Bhopal</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="skills-section-heading">Certifications</h3>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <span class="cert-issuer">SEBI · NISM</span>
+        <span class="cert-name">Investor Certification Examination</span>
+        <span class="cert-score">Score: 44 / 50 · Dec 2024 · Valid till Dec 2026</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">Zerodha Varsity</span>
+        <span class="cert-name">Fundamental Analysis</span>
+        <span class="cert-score">Score: 140 / 150 · Jul 2024</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">Zerodha Varsity</span>
+        <span class="cert-name">Options Strategies</span>
+        <span class="cert-score">Score: 130 / 150 · Aug 2024</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">Zerodha Varsity</span>
+        <span class="cert-name">Options Trading</span>
+        <span class="cert-score">Score: 230 / 250 · June 2024</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">Zerodha Varsity</span>
+        <span class="cert-name">Risk Management & Trading Psychology</span>
+        <span class="cert-score">Score: 200 / 250 · Oct 2024</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">Zerodha Varsity</span>
+        <span class="cert-name">Futures Trading</span>
+        <span class="cert-score">Score: 178.5 / 250 · Mar 2024</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">Zerodha Varsity</span>
+        <span class="cert-name">Technical Analysis</span>
+        <span class="cert-score">Score: 220 / 250 · Mar 2024</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">Zerodha Varsity</span>
+        <span class="cert-name">Currency, Commodity & Govt. Securities</span>
+        <span class="cert-score">Score: 200 / 250 · Sep 2024</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">Zerodha Varsity</span>
+        <span class="cert-name">Stock Market Basics</span>
+        <span class="cert-score">Score: 210 / 250 · Feb 2024</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">HBNI – IIMA Ventures</span>
+        <span class="cert-name">Foundation of Entrepreneurship (ModNuke Energy)</span>
+        <span class="cert-score">Score: 74 / 100 · Nov 2025 · 2 Credits</span>
+      </div>
+      <div class="cert-card">
+        <span class="cert-issuer">Princeton Plasma Physics Laboratory</span>
+        <span class="cert-name">Introduction to Fusion Energy & Plasma Physics</span>
+        <span class="cert-score">2023</span>
       </div>
     </div>
   </section>
@@ -987,7 +870,6 @@
           <p class="edu-inst">NISER, Bhubaneswar · Autonomous Institute, Dept. of Atomic Energy, Govt. of India</p>
           <span class="edu-grade">CGPA 8.11 · Sem IX · Graduating July 2026</span>
 
-          <!-- Grade table toggle — visible in physics mode too -->
           <div style="margin-top:0.8rem">
             <span class="grades-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.textContent = this.nextElementSibling.classList.contains('open') ? '↑ Hide grades' : '↓ Show semester grades'">↓ Show semester grades</span>
             <div class="grades-body">
@@ -1008,12 +890,10 @@
             </div>
           </div>
 
-          <!-- Thesis brief — physics mode only -->
-          <div class="p-only" style="margin-top:0.8rem">
+          <div style="margin-top:0.8rem">
             <p style="font-size:0.82rem;color:var(--muted);font-style:italic">Thesis: Engineering Au–Ge Nanoparticles for Plasmonic Enhancement & Optoelectronic Applications · Supervisor: Dr. Pratap Kumar Sahoo</p>
           </div>
 
-          <!-- Notable courses -->
           <div style="margin-top:0.7rem">
             <p style="font-size:0.75rem;color:var(--muted)">Notable courses: Quantum & Nano Electronics (AA), Special Topics in Quantum Mechanics (AA), Nonlinear Physics &amp; Chaos (AB), Density Functional Theory (AB), Atoms Molecules &amp; Radiation (BB), Condensed Matter Physics (BC), Introduction to Economics (AA)</p>
           </div>
@@ -1047,8 +927,7 @@
       <h2>Get in Touch</h2>
     </div>
     <div class="contact-inner">
-      <p class="f-only">Open to finance internships, research and analyst roles, content and writing opportunities, and MBA-adjacent work. Graduating July 2026. Open to relocation.</p>
-      <p class="p-only">Open to research positions, collaborations, and opportunities in semiconductor technology, advanced metrology, and experimental physics. Graduating July 2026. Open to relocation.</p>
+      <p>Open to finance internships, research and analyst roles, content and writing opportunities, and MBA-adjacent work. Also open to research positions and collaborations in semiconductor technology, advanced metrology, and experimental physics. Graduating July 2026. Open to relocation.</p>
       <div class="contact-links">
         <a href="mailto:heyashunayak@gmail.com" class="contact-link">
           <span class="cl-label">Email</span>heyashunayak@gmail.com
@@ -1078,28 +957,6 @@
     // ── NAV SCROLL
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
-
-    // ── MODE TOGGLE
-    // Layout: Physics [toggle] Finance
-    // Pill RIGHT = Finance active (default). Pill LEFT = Physics active.
-    const modeToggle = document.getElementById('modeToggle');
-    const labelF = document.getElementById('label-finance'); // right label
-    const labelP = document.getElementById('label-physics'); // left label
-    const heroBg = document.getElementById('heroBgText');
-    const expTitle = document.getElementById('expTitle');
-
-    modeToggle.addEventListener('click', () => {
-      const isPhysics = document.body.classList.toggle('physics-mode');
-      // Finance active = pill right = Finance label bold, Physics dim
-      labelF.classList.toggle('active', !isPhysics);
-      labelP.classList.toggle('active', isPhysics);
-      heroBg.textContent = isPhysics ? 'Physics' : 'Finance';
-      expTitle.textContent = isPhysics ? 'Research Experience' : 'Experience';
-      document.querySelectorAll('.exp-item').forEach(el => {
-        el.classList.remove('visible');
-        observer.observe(el);
-      });
-    });
 
     // ── DARK MODE — SVG icon swaps between sun and moon
     const darkBtn = document.getElementById('darkToggle');
