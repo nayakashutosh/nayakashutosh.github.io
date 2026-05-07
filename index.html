@@ -294,6 +294,23 @@
     .cert-name { font-size: 0.9rem; color: var(--ink); font-weight: 400; line-height: 1.4; }
     .cert-score { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
 
+    /* ── PROJECTS ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 0; }
+    .project-card {
+      border: 1px solid var(--rule);
+      padding: 1.8rem;
+      text-decoration: none; color: var(--ink);
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); background: var(--accent-light); }
+    .project-tag { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .project-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3; color: var(--ink); }
+    .project-desc { font-size: 0.81rem; color: var(--muted); flex: 1; line-height: 1.7; margin-bottom: 1rem; }
+    .project-tech { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.05em; display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+    .project-tech span { border: 1px solid var(--rule); padding: 0.2rem 0.5rem; transition: border-color 0.35s; }
+    .project-link { font-size: 0.72rem; color: var(--muted); margin-top: 0.8rem; letter-spacing: 0.06em; }
+
     /* ── WRITING / BLOG ── */
     .blog-intro { color: var(--muted); font-size: 0.89rem; max-width: 540px; margin-bottom: 2.5rem; line-height: 1.8; }
     .blog-intro a { color: var(--accent); text-decoration: none; }
@@ -306,7 +323,9 @@
       transition: border-color 0.2s, background 0.2s, border-color 0.35s;
     }
     .writing-card:hover { border-color: var(--accent); background: var(--accent-light); }
-    .writing-card-tag { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; transition: color 0.4s; }
+    .writing-card-tag { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; transition: color 0.4s; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .writing-card-format { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--rule); padding: 0.1rem 0.45rem; font-style: normal; transition: border-color 0.35s, color 0.35s; }
+    .writing-card-format.poem { color: var(--accent); border-color: var(--accent); opacity: 0.7; }
     .writing-card-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.5rem; line-height: 1.3; }
     .writing-card-desc { font-size: 0.81rem; color: var(--muted); flex: 1; line-height: 1.7; }
     .writing-card-arrow { font-size: 0.72rem; color: var(--muted); margin-top: 1rem; letter-spacing: 0.06em; }
@@ -360,7 +379,7 @@
     @media (max-width: 768px) {
       .util-bar, nav, section, #hero, footer { padding-left: 1.4rem; padding-right: 1.4rem; }
       nav { padding-top: 0.9rem; padding-bottom: 0.9rem; }
-      .about-grid, .writing-grid, .cert-grid { grid-template-columns: 1fr; }
+      .about-grid, .writing-grid, .cert-grid, .projects-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
       .skill-block { border-right: none; }
       .skill-block:nth-last-child(-n+3) { border-bottom: 1px solid var(--rule); }
@@ -388,6 +407,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#writing">Writing</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -400,7 +420,7 @@
     <p class="hero-eyebrow">M.Sc. Physics · NISER · Graduating 2026</p>
     <h1>Ashutosh<br><em>Nayak</em></h1>
     <p class="hero-desc">
-      I am trained to be an experimental physicist, graduating from NISER Bhubaneswar in July 2026. My M.Sc. thesis investigates Au–Ge nanoparticles for plasmonic and optoelectronic applications. Alongside research, I've spent the last two years studying finance and capital markets, completing all Zerodha Varsity certifications and the SEBI-NISM exam. I’m looking for roles where I can learn fast, work on complex problems, and contribute across disciplines. I write about economics, science, and ideas at <a href="https://matterthathinks.github.io" target="_blank">Matter That Thinks</a>.
+      I am trained to be an experimental physicist, graduating from NISER Bhubaneswar in July 2026. My M.Sc. thesis investigates Au–Ge nanoparticles for plasmonic and optoelectronic applications. Alongside research, I've spent the last two years studying finance and capital markets, completing all Zerodha Varsity certifications and the SEBI-NISM exam. I’m looking for roles where I can learn fast, work on complex problems, and contribute across disciplines. I write about economics, science, and ideas at <a href="https://matterthathinks.github.io/" target="_blank">Matter That Thinks</a>.
     </p>
     <div class="hero-links">
       <a href="#experience" class="btn solid">My Background</a>
@@ -805,52 +825,126 @@
     </div>
   </section>
 
+  <!-- ═══ PROJECTS ═══ -->
+  <section id="projects">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>Projects &amp; Tools</h2>
+    </div>
+
+    <div class="projects-grid">
+      <a href="https://matterthathinks.github.io/india-vs-china/" target="_blank" class="project-card">
+        <span class="project-tag">Data Visualization</span>
+        <p class="project-title">India vs China: A Comparative Analysis</p>
+        <p class="project-desc">An interactive visual comparison of India and China across economic, demographic, and development indicators — built to make the numbers actually readable.</p>
+        <div class="project-tech">
+          <span>React</span>
+          <span>D3.js</span>
+          <span>Data Viz</span>
+        </div>
+        <span class="project-link">View Project →</span>
+      </a>
+      <a href="https://matterthathinks.github.io/option-strategy-visualizer/" target="_blank" class="project-card">
+        <span class="project-tag">Finance &amp; Trading</span>
+        <p class="project-title">Option Strategy Visualiser</p>
+        <p class="project-desc">A web tool to build and visualise options strategies — payoff diagrams, breakeven points, and P&amp;L at expiry. Built to understand derivatives intuitively.</p>
+        <div class="project-tech">
+          <span>React</span>
+          <span>JavaScript</span>
+          <span>Finance Math</span>
+        </div>
+        <span class="project-link">View Project →</span>
+      </a>
+      <a href="https://rate-my-prof-niser.vercel.app/" target="_blank" class="project-card">
+        <span class="project-tag">Community App</span>
+        <p class="project-title">Rate My Prof — NISER</p>
+        <p class="project-desc">A professor rating platform built specifically for NISER students. Lets students leave anonymous course and teaching feedback — something the campus didn't have.</p>
+        <div class="project-tech">
+          <span>React</span>
+          <span>Vercel</span>
+          <span>Firebase</span>
+        </div>
+        <span class="project-link">View Project →</span>
+      </a>
+    </div>
+  </section>
+
   <!-- ═══ WRITING ═══ -->
   <section id="writing">
     <div class="section-header">
-      <span class="section-num">04</span>
+      <span class="section-num">05</span>
       <h2>Writing</h2>
     </div>
 
     <p class="blog-intro">
-      I write at <a href="https://matterthathinks.github.io" target="_blank">Matter That Thinks</a> — essays on economics, science, politics, and the examined life. Ten essays published since April 2026.
+      I write at <a href="https://matterthathinks.substack.com" target="_blank">Matter That Thinks</a> — essays, poems, and occasional dispatches on economics, science, politics, and the examined life. Published since April 2026. Full archive on <a href="https://matterthathinks.substack.com/archive" target="_blank">Substack</a>.
     </p>
 
     <div class="writing-grid">
-      <a href="https://matterthathinks.github.io" target="_blank" class="writing-card">
-        <span class="writing-card-tag">Economics & Finance</span>
+      <a href="https://matterthathinks.substack.com/p/the-price-of-trust" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Economics &amp; Finance <span class="writing-card-format">Essay</span></span>
+        <p class="writing-card-title">The Price of Trust</p>
+        <p class="writing-card-desc">Why Ponzi schemes don't just steal money — they leave behind a system people no longer believe in.</p>
+        <span class="writing-card-arrow">Read →</span>
+      </a>
+      <a href="https://matterthathinks.substack.com/p/the-weight-that-spreads" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Society &amp; Culture <span class="writing-card-format poem">Poem</span></span>
+        <p class="writing-card-title">The Weight That Spreads</p>
+        <p class="writing-card-desc">On the pain that belongs to many — and what it means when grief stops being personal and starts being shared.</p>
+        <span class="writing-card-arrow">Read →</span>
+      </a>
+      <a href="https://matterthathinks.substack.com/p/the-broken-ladder" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Economics &amp; Finance <span class="writing-card-format">Essay</span></span>
         <p class="writing-card-title">The Broken Ladder</p>
         <p class="writing-card-desc">Why the poor don't make bad choices — they make rational ones inside a broken system. On hope, dignity, and the economics of staying human.</p>
         <span class="writing-card-arrow">Read →</span>
       </a>
-      <a href="https://matterthathinks.github.io" target="_blank" class="writing-card">
-        <span class="writing-card-tag">Economics & Finance</span>
-        <p class="writing-card-title">The Street-Level Casino</p>
-        <p class="writing-card-desc">What India's derivatives boom says about jobs, risk, and desperation. A close look at who is really on the other side of the trade.</p>
-        <span class="writing-card-arrow">Read →</span>
-      </a>
-      <a href="https://matterthathinks.github.io" target="_blank" class="writing-card">
-        <span class="writing-card-tag">Science & Technology</span>
-        <p class="writing-card-title">The Most Important Company You've Never Heard Of</p>
-        <p class="writing-card-desc">How a €300 million machine quietly controls the price of everything in semiconductor manufacturing.</p>
-        <span class="writing-card-arrow">Read →</span>
-      </a>
-      <a href="https://matterthathinks.github.io" target="_blank" class="writing-card">
-        <span class="writing-card-tag">Science & Technology</span>
+      <a href="https://matterthathinks.substack.com/p/the-day-mass-went-missing" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Science &amp; Technology <span class="writing-card-format">Essay</span></span>
         <p class="writing-card-title">The Day Mass Went Missing</p>
         <p class="writing-card-desc">From uranium deals to fusion dreams — the physics that quietly powers everything, and why the numbers never quite add up.</p>
         <span class="writing-card-arrow">Read →</span>
       </a>
-      <a href="https://matterthathinks.github.io" target="_blank" class="writing-card">
-        <span class="writing-card-tag">Society & Culture</span>
+      <a href="https://matterthathinks.substack.com/p/the-price-of-a-cigarette" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Society &amp; Culture <span class="writing-card-format">Essay</span></span>
         <p class="writing-card-title">The Price of a Cigarette</p>
         <p class="writing-card-desc">What a pan shop outside campus taught me about risk, policy, and why bans don't work the way we think.</p>
         <span class="writing-card-arrow">Read →</span>
       </a>
-      <a href="https://matterthathinks.github.io" target="_blank" class="writing-card">
-        <span class="writing-card-tag">Politics & Governance</span>
+      <a href="https://matterthathinks.substack.com/p/the-street-level-casino" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Economics &amp; Finance <span class="writing-card-format">Essay</span></span>
+        <p class="writing-card-title">The Street-Level Casino</p>
+        <p class="writing-card-desc">What India's derivatives boom says about jobs, risk, and desperation. A close look at who is really on the other side of the trade.</p>
+        <span class="writing-card-arrow">Read →</span>
+      </a>
+      <a href="https://matterthathinks.substack.com/p/the-most-important-company-youve" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Science &amp; Technology <span class="writing-card-format">Essay</span></span>
+        <p class="writing-card-title">The Most Important Company You've Never Heard Of</p>
+        <p class="writing-card-desc">How a €300 million machine quietly controls the price of everything in semiconductor manufacturing.</p>
+        <span class="writing-card-arrow">Read →</span>
+      </a>
+      <a href="https://matterthathinks.substack.com/p/the-business-of-the-presidency" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Politics &amp; Governance <span class="writing-card-format">Essay</span></span>
         <p class="writing-card-title">The Business of the Presidency</p>
         <p class="writing-card-desc">How Donald Trump turned political power into a profit engine — and what it reveals about the intersection of governance and capital.</p>
+        <span class="writing-card-arrow">Read →</span>
+      </a>
+      <a href="https://matterthathinks.substack.com/p/who-does-the-law-actually-protect" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Politics &amp; Governance <span class="writing-card-format">Essay</span></span>
+        <p class="writing-card-title">Who Does the Law Actually Protect?</p>
+        <p class="writing-card-desc">What an evening in Malisahi taught me about law, dignity, and moral hypocrisy.</p>
+        <span class="writing-card-arrow">Read →</span>
+      </a>
+      <a href="https://matterthathinks.substack.com/p/what-is-seen-and-what-is-not-seen" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Economics &amp; Finance <span class="writing-card-format">Essay</span></span>
+        <p class="writing-card-title">What Is Seen and What Is Not Seen</p>
+        <p class="writing-card-desc">Why rising GDP can still mean a poorer world — a story about economics, opportunity, and invisible loss.</p>
+        <span class="writing-card-arrow">Read →</span>
+      </a>
+      <a href="https://matterthathinks.substack.com/p/a-question-of-mercy" target="_blank" class="writing-card">
+        <span class="writing-card-tag">Society &amp; Culture <span class="writing-card-format poem">Poem</span></span>
+        <p class="writing-card-title">A Question of Mercy</p>
+        <p class="writing-card-desc">On the difficult arithmetic of forgiveness — who it is owed to, who it is for, and what it costs to withhold it.</p>
         <span class="writing-card-arrow">Read →</span>
       </a>
     </div>
@@ -859,7 +953,7 @@
   <!-- ═══ EDUCATION ═══ -->
   <section id="education">
     <div class="section-header">
-      <span class="section-num">05</span>
+      <span class="section-num">06</span>
       <h2>Education</h2>
     </div>
 
@@ -924,7 +1018,7 @@
   <!-- ═══ CONTACT ═══ -->
   <section id="contact">
     <div class="section-header">
-      <span class="section-num">06</span>
+      <span class="section-num">07</span>
       <h2>Get in Touch</h2>
     </div>
     <div class="contact-inner">
