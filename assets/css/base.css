@@ -1,0 +1,73 @@
+/* ══════════════════════════════════════════════
+   BASE.CSS — Variables · Reset · Typography · Layout
+   ══════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── THEME TOKENS ── */
+:root {
+  --bg: #f5f2ed;
+  --ink: #1a1814;
+  --muted: #7a756e;
+  --rule: #dedad4;
+  --card: #f0ece6;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+  --accent: #1c3557;
+  --accent-light: rgba(28,53,87,0.08);
+}
+[data-theme="dark"] {
+  --bg: #131210;
+  --ink: #e8e4dd;
+  --muted: #8a857e;
+  --rule: #2a2820;
+  --card: #1c1a17;
+  --accent-light: rgba(28,53,87,0.15);
+}
+
+/* ── BASE ── */
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.35s, color 0.35s;
+}
+
+/* ── TYPOGRAPHY ── */
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+/* ── SECTIONS ── */
+section { padding: 5.5rem 4rem; border-top: 1px solid var(--rule); transition: border-color 0.35s; }
+.section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+.section-num { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .util-bar, nav, section, #hero, footer { padding-left: 1.4rem; padding-right: 1.4rem; }
+  nav { padding-top: 0.9rem; padding-bottom: 0.9rem; }
+  .about-grid, .writing-grid, .cert-grid, .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .skill-block { border-right: none; }
+  .skill-block:nth-last-child(-n+3) { border-bottom: 1px solid var(--rule); }
+  .skill-block:last-child { border-bottom: none; }
+  .exp-item, .edu-item { grid-template-columns: 1fr; gap: 0.3rem; }
+  .thesis-highlights { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 0.3rem; text-align: center; }
+  .nav-links { display: none; }
+}
